@@ -1,0 +1,17 @@
+# Используем легкую версию Python
+FROM python:3.11-slim
+
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируем файл зависимостей
+COPY requirements.txt .
+
+# Устанавливаем библиотеки
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем весь код бота в контейнер
+COPY . .
+
+# Команда для запуска бота
+CMD ["python", "pon.py"]
